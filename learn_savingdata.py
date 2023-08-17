@@ -422,10 +422,10 @@ class Sets:
     def ShowNewSet(self):
         os.system('cls')
         print(self.name)
-        print("=============")
+        print("======================")
         for words in self.listOfWords:
-            print('\t', words.word, "-", words.definition, "-", words.image)
-        print("=============")
+            print(words.word, "-", words.definition, "-", words.image)
+        print("======================")
         time.sleep(2)
         ShowAllMySets(self.owner)
 
