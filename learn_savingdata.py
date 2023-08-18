@@ -10,7 +10,7 @@ def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
 
 def Menu():
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\nHello,")
         print("==============================")
         print("This programm was made to help")
@@ -33,7 +33,7 @@ def Menu():
         
 def StartingOptions(person):
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("========Choose========")
         print("(0) Create a new set")
         print("(1) Show all my sets")
@@ -55,7 +55,7 @@ def StartingOptions(person):
                     break
                
 def LogIn():
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     while True:
         list_of_users_out = []
         user = 0
@@ -72,16 +72,16 @@ def LogIn():
             return user
         print("Enter your username:")
         username = input()
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Enter your password:")
         password = getpass.getpass()
         for user in list_of_users_out:
             if username == user.username and password == user.password:
-                os.system('cls')
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print("Welcome", user.name)
                 time.sleep(2)
                 return user
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("There is no such account")
         user = None 
         time.sleep(3)
@@ -96,30 +96,30 @@ def CheckInput():
     return choice
 def NewAccountData():
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Enter your name:")
         name = input()
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Enter your surname:")
         surname = input()
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         username = CheckUsername()
         if username == None:
             person = None
             break
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         email = CheckEmail()
         if email == None:
             person = None
             break
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Enter your password:")
         password = IsPasswordStrong()
         person = User(name, surname, username, email, password)
         person.AddUserData()
         with open('users_data.pkl', 'wb') as users_data:
             pickle.dump(person.list_of_users, users_data)
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Welcome", person.name)
         print("You've created an account")
         time.sleep(2)
@@ -183,7 +183,7 @@ def IsPasswordStrong():
     print("Enter your password again:")
     passwordCheck = getpass.getpass()
     while password != passwordCheck:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\nPasswords aren't the same -- try again")
         print("\nEnter your password: ")
         password = getpass.getpass()
@@ -214,7 +214,7 @@ class User:
             pickle.dump(self.list_of_users, users_data)
     def DeleteAccount(self):
         while True:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("========Choose=========")
             print("(0) Delete your account")
             print("(1) Return")
@@ -242,18 +242,18 @@ class User:
                             self.UpdatePickle()
                             return False
                         while password != self.password:
-                            os.system('cls')
+                            os.system('cls' if os.name == 'nt' else 'clear')
                             print("Your password is incorrect. Try again:")
                             password = getpass.getpass()
                 case 1:
                     break
     def ChangePassword(self):
         while True:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("Enter your current password:")
             password =  getpass.getpass()
             while password != self.password:
-                os.system('cls')
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print("(0) Return")
                 print("Your current password is incorrect. Try again:")
                 password = getpass.getpass()
@@ -261,7 +261,7 @@ class User:
                     break
             if password == "0":
                     break 
-            os.system('cls')   
+            os.system('cls' if os.name == 'nt' else 'clear')   
             print("Enter your new password:")
             newPassword = IsPasswordStrong()        
             self.LoadPickle()
@@ -274,7 +274,7 @@ class User:
             break                      
     def ShowProfileData(self):
         while True:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("This is your profile:")
             print("========================")
             print("Name:", self.name)
@@ -292,24 +292,24 @@ class User:
                     break
     def CreateMySet(self):
         while True:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("(0) Create new set")
             print("(1) Return")
             choice = CheckInput()
             match choice:
                 case 0:
-                    os.system('cls')
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print("Enter name of your new set:")
                     setname = input()
                     dir = os.getcwd()
                     path = dir + '//' + setname
                     while os.path.exists(path) is True:
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print("This name is in use. Try again:")
                         setname = input()
                         path = dir + '//' + setname
                     newSet = Sets(setname, self)
-                    os.system('cls')
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print("Will you use picters:")
                     print("(0) Yes")
                     print("(1) No")           
@@ -347,7 +347,7 @@ class Sets:
             match choice:
                 case 0:
                     while True:
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         parent_dir = os.getcwd()
                         directory = self.name
                         path = os.path.join(parent_dir, directory)
@@ -358,7 +358,7 @@ class Sets:
                         input()
                         break
                     while True:
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print("=====Choose=================================")
                         print("(0) Save your set")
                         print("(1) Add a picture and a word with definition")
@@ -367,7 +367,7 @@ class Sets:
                         choice = CheckInput()
                         match choice:
                             case 0:
-                                os.system('cls')
+                                os.system('cls' if os.name == 'nt' else 'clear')
                                 print("Saving a new set")
                                 self.UploadData()
                                 word = "0"
@@ -405,13 +405,13 @@ class Sets:
                         if word == "0":
                             break
                 case 1:
-                    os.system('cls')
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print("(0) Save your set")
                     print("=================")
                     print("Add a word:")
                     word = input() 
                     if word == "0":
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print("Saving a new set")
                         self.UploadData()
                         break                             
@@ -420,7 +420,7 @@ class Sets:
                     self.listOfWords.append(Words(word, definition, None))
         
     def ShowNewSet(self):
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(self.name)
         print("======================")
         for words in self.listOfWords:
@@ -432,7 +432,7 @@ class Sets:
 
 def ShowAllMySets(person):
         while True:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             listOfAllSets_out = []
             MySets = []
             id = 0
@@ -484,7 +484,7 @@ def ShowAllMySets(person):
                     while True:
                         print("Enter a number of a set you would like to learn:")
                         nr = CheckInput()
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print(MySets[nr].name)
                         print("================")
                         id = 0
@@ -508,7 +508,7 @@ def ShowAllMySets(person):
                                 break
                 case 2:
                     while True:
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         id = 0
                         for set in MySets:
                             print(id, "-", set.name)
@@ -522,7 +522,7 @@ def ShowAllMySets(person):
                                 while True:
                                     print("Enter a number of a set you would like to edit")
                                     nr = CheckInput()
-                                    os.system('cls')
+                                    os.system('cls' if os.name == 'nt' else 'clear')
                                     id = 0
                                     print(MySets[nr].name)
                                     print("================")
@@ -552,7 +552,7 @@ def ShowAllMySets(person):
                     while True:
                         print("Enter a number of a set you would like to learn:")
                         nr = CheckInput()
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print(MySets[nr].name)
                         print("================")
                         id = 0
@@ -576,7 +576,7 @@ def ShowAllMySets(person):
                                 break
 def DeleteSet(MySets, listOfAllSets):
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         id = 0
         for set in MySets:
             print(id, "-", set.name)
@@ -590,7 +590,7 @@ def DeleteSet(MySets, listOfAllSets):
                 while True:
                     print("Enter a number of a set you would like to delete:")
                     nr = CheckInput()
-                    os.system('cls')
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print(MySets[nr].name)
                     print("===============")
                     id = 0
@@ -617,7 +617,7 @@ def DeleteSet(MySets, listOfAllSets):
                 break
 def EditWord(MySet, listOfAllSets, person):
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         for set in listOfAllSets:
             if set.name == MySet.name and set.owner.username == person.username and MySet.listOfWords == set.listOfWords:
                 listOfAllSets.remove(set)
@@ -646,7 +646,7 @@ def EditWord(MySet, listOfAllSets, person):
                     break
                 case 1:
                     while True:
-                        os.system('cls')
+                        os.system('cls' if os.name == 'nt' else 'clear')
                         print(MySet.listOfWords[nr-1].word, "-", MySet.listOfWords[nr-1].definition)
                         print("=====Choose=====")
                         print("(0) Return")
@@ -658,7 +658,7 @@ def EditWord(MySet, listOfAllSets, person):
                                 break
                             case 1:
                                 while True:
-                                    os.system('cls')
+                                    os.system('cls' if os.name == 'nt' else 'clear')
                                     print(MySet.listOfWords[nr-1].word)
                                     print("=====Enter a word======")
                                     print("(0) Return")
@@ -670,7 +670,7 @@ def EditWord(MySet, listOfAllSets, person):
                                         break
                             case 2:
                                 while True:
-                                    os.system('cls')
+                                    os.system('cls' if os.name == 'nt' else 'clear')
                                     print(MySet.listOfWords[nr-1].definition)
                                     print("=====Enter a definition=======")
                                     print("(0) Return")
@@ -685,7 +685,7 @@ def EditWord(MySet, listOfAllSets, person):
                 pickle.dump(listOfAllSets, sets_data)
 def AddWord(MySet, listOfAllSets, person):
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         id = 0
         print(MySet.name)
         print("=============================")
@@ -700,7 +700,7 @@ def AddWord(MySet, listOfAllSets, person):
             case 0:
                 break
             case 1:
-                os.system('cls')
+                os.system('cls' if os.name == 'nt' else 'clear')
                 id = 0
                 print(MySet.name)
                 print("=============================")
@@ -743,7 +743,7 @@ def DeleteWord(MySet, listOfAllSets, person):
         pickle.dump(listOfAllSets, sets_data)
 def OperatingOnSet(MySet, person, listOfAllSets):
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         id = 0
         print(MySet.name)
         print("================")
@@ -756,7 +756,7 @@ def OperatingOnSet(MySet, person, listOfAllSets):
         print("(2) Add a word")
         print("(3) Return")
         choice = CheckInput()
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         match choice:
             case 0:
                 DeleteWord(MySet, listOfAllSets, person)
@@ -774,7 +774,7 @@ def Learning(MySet):
         while len(listToLearn) != 0:
             length = len(listToLearn)
             id = random.randint(0,length-1)
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print(listToLearn[id].definition)
             if listToLearn[id].image != None:
                 dir = os.getcwd()
@@ -799,7 +799,7 @@ def Learning(MySet):
                         while answer != listToLearn[id].word:
                             print("Type it now:")
                             answer = input()
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\nYou finished your learning")
         print("(0) Return")
         choice = CheckInput()
@@ -812,11 +812,11 @@ def FlashCards(MySet):
         length = len(listToLearn)
         print("To show an answer type in any key and/or click enter")
         time.sleep(2)
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         while len(listToLearn) != 0:
             length = len(listToLearn)
             id = random.randint(0,length-1)
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print(listToLearn[id].definition)
             if listToLearn[id].image != None:
                 dir = os.getcwd()
@@ -832,7 +832,7 @@ def FlashCards(MySet):
                 listToLearn.remove(listToLearn[id])
             elif answer == 1:
                 pass
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\nYou finished your falsh cards")
         print("(0) Return")
         choice = CheckInput()
