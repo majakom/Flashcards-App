@@ -1,3 +1,6 @@
 /learn_savingdata.exe
-/sets_data
-/users_data
+/sets_data.pkl
+/users_data.pkl
+/quizlet.zip
+/Pipfile
+/Pipfile.lock
